@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { logoUrl } from '../static/image'
+import { logoUrl } from '../../static/image'
 
 export const HeaderWrapper = styled.div`
 	height: 58px;
@@ -105,6 +105,36 @@ export const Search = styled.input.attrs({ placeholder: '搜索' })`
 		width: 160px;
 		transition: width .3s ease-out .1s;
 	}
+`
+
+export const SearchHot = styled.div`
+	position: absolute;
+	top: 100%;
+	left: 30px;
+	width: 220px;
+	padding: 20px;
+	box-shadow: 0 0 2px #999;
+`
+
+export const SearchHotTitle = styled.div`
+	font-size: 14px;
+	border-radius: 4px;
+	color: #969696;
+`
+
+export const SearchHotToggle = styled.span`
+	display: block;
+	float: right;
+`
+
+export const SearchHotItem = styled.li`
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	font-size: 12px;
+	color: #787878;
+	float: left;
+	padding: 2px 6px;
+	margin: 15px 10px 0 0;
 `
 
 export const Addition = styled.div`

@@ -1,15 +1,15 @@
 import { BEARCH_FOCUS, BEARCH_BLUR } from './actionTypes'
+import { fromJS } from 'immutable'
 
-const defaultState = {
+const defaultState = fromJS({
 	focused: false
-}
+})
 
 export default (prevState = defaultState, action) => {
-	const newState = JSON.parse(JSON.stringify(prevState))
 	if(action.type === BEARCH_FOCUS) {
-		newState.focused = true
+		return prevState.set('focused', true)
 	} else if(action.type === BEARCH_BLUR) {
-		newState.focused = false
+		return prevState.set('focused', false)
 	}
-	return newState
+	return prevState
 }

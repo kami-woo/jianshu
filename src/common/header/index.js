@@ -1,7 +1,7 @@
 import React from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
-import { BEARCH_FOCUS, BEARCH_BLUR } from './store/actionTypes'
+import { actionCreators } from './store'
 import {
 	HeaderWrapper,
 	Logo,
@@ -10,8 +10,39 @@ import {
 	MenuItem,
 	Addition,
 	SearchWrapper,
+	SearchHot,
+	SearchHotTitle,
+	SearchHotToggle,
+	SearchHotItem,
 	Search
 } from './style.js'
+
+const showSearchHot = (judge) => {
+	if(judge) {
+		return (
+			<SearchHot>
+				<SearchHotTitle>
+					热门搜索
+					<SearchHotToggle>换一批</SearchHotToggle>
+				</SearchHotTitle>
+				<ul>
+					<SearchHotItem>区块链</SearchHotItem>
+					<SearchHotItem>区块</SearchHotItem>
+					<SearchHotItem>区块链</SearchHotItem>
+					<SearchHotItem>区块</SearchHotItem>
+					<SearchHotItem>区块</SearchHotItem>
+					<SearchHotItem>区块</SearchHotItem>
+					<SearchHotItem>区块链</SearchHotItem>
+					<SearchHotItem>区块</SearchHotItem>
+					<SearchHotItem>区块链</SearchHotItem>
+					<SearchHotItem>区块</SearchHotItem>
+					<SearchHotItem>区块</SearchHotItem>
+					<SearchHotItem>区块</SearchHotItem>
+				</ul>
+			</SearchHot>
+		)
+	}
+}
 
 const header = (props) => {
 	const { focused, handleFocusSearch, handleBlurSearch } = props
@@ -38,6 +69,7 @@ const header = (props) => {
 						/>
 					</CSSTransition>
 					<i className={ focused ? 'focused iconfont' : 'iconfont' }>&#xe7d4;</i>
+					{ showSearchHot(focused) }
 				</SearchWrapper>
 			</Menu>
 			<Addition>
@@ -52,23 +84,17 @@ const header = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-	focused: state.headerReducer.focused
+	focused: state.getIn(['headerReducer', 'focused'])
 })
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		handleFocusSearch() {
-			const action = {
-				type: BEARCH_FOCUS
-			}
-			dispatch(action)
+			dispatch(actionCreators.searchFocus())
 		},
 
 		handleBlurSearch() {
-			const action = {
-				type: BEARCH_BLUR
-			}
-			dispatch(action)
+			dispatch(actionCreators.searchBlur())
 		}
 	}
 }
