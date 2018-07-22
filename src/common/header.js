@@ -1,7 +1,7 @@
 import React from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
-import { BEARCH_FOCUS, BEARCH_BLUR } from '../store/actionTypes'
+import { BEARCH_FOCUS, BEARCH_BLUR } from './store/actionTypes'
 import {
 	HeaderWrapper,
 	Logo,
@@ -52,7 +52,7 @@ const header = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-	focused: state.focused
+	focused: state.headerReducer.focused
 })
 
 const mapDispatchToProps = (dispatch) => {
