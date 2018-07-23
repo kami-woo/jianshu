@@ -54,7 +54,7 @@ export const SearchWrapper = styled.div`
 	float: left;
 	position: relative;
 
-	.iconfont {
+	.zoom {
 		line-height: 30px;
 		width: 30px;
 		border-radius: 15px;
@@ -125,6 +125,17 @@ export const SearchHotTitle = styled.div`
 export const SearchHotToggle = styled.span`
 	display: block;
 	float: right;
+	cursor: pointer;
+	
+	.spin {
+		display: block;
+		margin-top: 2px;
+		float: left;
+		font-size: 12px;
+		margin-right: 2px;
+		transition: all .2s ease-in-out;
+		transform-origin: center center;
+	}
 `
 
 export const SearchHotItem = styled.li`

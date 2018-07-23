@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
@@ -17,84 +17,124 @@ import {
 	Search
 } from './style.js'
 
-const showSearchHot = (judge) => {
-	if(judge) {
+class header extends Component {
+	render() {
+		const { focused, list, handleFocusSearch, handleBlurSearch } = this.props
 		return (
-			<SearchHot>
-				<SearchHotTitle>
-					热门搜索
-					<SearchHotToggle>换一批</SearchHotToggle>
-				</SearchHotTitle>
-				<ul>
-					<SearchHotItem>区块链</SearchHotItem>
-					<SearchHotItem>区块</SearchHotItem>
-					<SearchHotItem>区块链</SearchHotItem>
-					<SearchHotItem>区块</SearchHotItem>
-					<SearchHotItem>区块</SearchHotItem>
-					<SearchHotItem>区块</SearchHotItem>
-					<SearchHotItem>区块链</SearchHotItem>
-					<SearchHotItem>区块</SearchHotItem>
-					<SearchHotItem>区块链</SearchHotItem>
-					<SearchHotItem>区块</SearchHotItem>
-					<SearchHotItem>区块</SearchHotItem>
-					<SearchHotItem>区块</SearchHotItem>
-				</ul>
-			</SearchHot>
+			<HeaderWrapper>
+				<Logo />
+				<Menu>
+					<MenuItem className="left home"> 首页 </MenuItem>
+					<MenuItem className="left"> 下载APP </MenuItem>
+					<MenuItem className="right"> 登录 </MenuItem>
+					<MenuItem className="right">
+						<i className="iconfont">&#xe636;</i>
+					</MenuItem>
+					<SearchWrapper>
+						<CSSTransition
+							in={ focused }
+							timeout={ 400 }
+							classNames="slide"
+						>
+							<Search 
+								className={ focused ? 'focused' : '' } 
+								onFocus={ () => { handleFocusSearch(list) } }
+								onBlur={ handleBlurSearch }
+							/>
+						</CSSTransition>
+						<i className={ focused ? 'focused iconfont zoom' : 'iconfont zoom' }>&#xe7d4;</i>
+						{ this.showSearchHot() }
+					</SearchWrapper>
+				</Menu>
+				<Addition>
+					<Button className="writting">
+						<i className="iconfont">&#xe608;</i>
+						写文章
+					</Button>
+					<Button className="reg">注册</Button>
+				</Addition>
+			</HeaderWrapper>
 		)
+	}
+
+	showSearchHot () {
+		const { focused, mouseIn, list, page, handleMouseEnter, handleMouseLeave, handleToggle } = this.props
+		const pageList = [], jsList = list.toJS()
+		for (let i = page*10; i < (page+1)*10 && i < list.size; i++) {
+			pageList.push(jsList[i])
+		}
+		if(focused || mouseIn) {
+			return (
+				<SearchHot 
+					onMouseEnter={ handleMouseEnter }
+					onMouseLeave={ handleMouseLeave }
+				>
+					<SearchHotTitle>
+						热门搜索
+						<SearchHotToggle onClick={ () => { handleToggle(this.icon) } }>
+							<i className="iconfont spin" ref={ (icon) => { this.icon = icon } }>&#xe851;</i>
+							<span>换一批</span>
+						</SearchHotToggle>
+					</SearchHotTitle>
+					<ul>
+						{ this.showList(pageList) }
+					</ul>
+				</SearchHot>
+			)
+		}
+		else return null
+	}
+
+	showList (list) {
+		if(list.length === 0) return null
+		else {
+			return (
+				list.map((value) => {
+					return (
+						<SearchHotItem key={ value }>{ value }</SearchHotItem>
+					)
+				})
+			)
+		}
 	}
 }
 
-const header = (props) => {
-	const { focused, handleFocusSearch, handleBlurSearch } = props
-	return (
-		<HeaderWrapper>
-			<Logo />
-			<Menu>
-				<MenuItem className="left home"> 首页 </MenuItem>
-				<MenuItem className="left"> 下载APP </MenuItem>
-				<MenuItem className="right"> 登录 </MenuItem>
-				<MenuItem className="right">
-					<i className="iconfont">&#xe636;</i>
-				</MenuItem>
-				<SearchWrapper>
-					<CSSTransition
-						in={ focused }
-						timeout={ 400 }
-						classNames="slide"
-					>
-						<Search 
-							className={ focused ? 'focused' : '' } 
-							onFocus={ handleFocusSearch }
-							onBlur={ handleBlurSearch }
-						/>
-					</CSSTransition>
-					<i className={ focused ? 'focused iconfont' : 'iconfont' }>&#xe7d4;</i>
-					{ showSearchHot(focused) }
-				</SearchWrapper>
-			</Menu>
-			<Addition>
-				<Button className="writting">
-					<i className="iconfont">&#xe608;</i>
-					写文章
-				</Button>
-				<Button className="reg">注册</Button>
-			</Addition>
-		</HeaderWrapper>
-	)
-}
-
 const mapStateToProps = (state) => ({
-	focused: state.getIn(['headerReducer', 'focused'])
+	focused: state.getIn(['headerReducer', 'focused']),
+	list: state.getIn(['headerReducer', 'list']),
+	mouseIn: state.getIn(['headerReducer', 'mouseIn']),
+	page: state.getIn(['headerReducer', 'page']),
+	totalPage: state.getIn(['headerReducer', 'totalPage'])
 })
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		handleFocusSearch() {
+		handleFocusSearch(list) {
+			(list.size === 0) && dispatch(actionCreators.getInfo())
 			dispatch(actionCreators.searchFocus())
 		},
 
 		handleBlurSearch() {
 			dispatch(actionCreators.searchBlur())
+		},
+
+		handleMouseEnter() {
+			dispatch(actionCreators.searchMouseEnter())
+		},
+
+		handleMouseLeave() {
+			dispatch(actionCreators.searchMouseLeave())
+		},
+
+		handleToggle(icon) {
+			let deg = icon.style.transform
+			deg = deg.replace(/\D/g, '')
+			let degInt = 0
+			if(deg) {
+				degInt = parseInt(deg, 10)
+			}
+			icon.style.transform = 'rotate(' + ( degInt+360 ) + 'deg)'
+			dispatch(actionCreators.searchToggle())
 		}
 	}
 }

@@ -1,2 +1,6 @@
-export const BEARCH_FOCUS = 'search_focus'
-export const BEARCH_BLUR = 'search_blur'
+export const SEARCH_FOCUS = 'search_focus'
+export const SEARCH_BLUR = 'search_blur'
+export const SEARCH_INFO = 'search_info'
+export const SEARCH_MOUSE_ENTER = 'search_mouse_enter'
+export const SEARCH_MOUSE_LEAVE = 'search_mouse_leave'
+export const SEARCH_TOGGLE = 'search_toggle'
