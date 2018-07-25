@@ -2,10 +2,12 @@ import styled from 'styled-components'
 import { logoUrl } from '../../static/image'
 
 export const HeaderWrapper = styled.div`
+	position: fixed;
+	width: 100%;
 	height: 58px;
 	min-width: 700px;
 	border-bottom: 1px solid #e7e7e7;
-	position: relative;
+	background: #fff;
 `
 
 export const Logo = styled.a.attrs({ href: '/' })`
