@@ -11,8 +11,8 @@ class recommend extends Component {
           imgList.map((imgItem) => {
             imgItem = imgItem.toJS()
             return (
-              <RecommendItem key={imgItem.alt}>
-                <img alt={ imgItem.alt } className="re-img" src={ imgItem.imgUrl } />
+              <RecommendItem key={imgItem.id}>
+                <img alt="" className="re-img" src={ imgItem.imgUrl } />
                 <span className="re-title" >{ imgItem.title }</span>
               </RecommendItem>
             )

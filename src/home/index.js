@@ -32,6 +32,7 @@ class home extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     getListInfo() {
+      // console.log(actionCreators.getInfo)
       dispatch(actionCreators.getInfo)
     }
   }

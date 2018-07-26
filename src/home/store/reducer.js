@@ -1,15 +1,8 @@
 import { fromJS } from 'immutable'
+import { actionTypes } from './index'
 
 const defaultState = fromJS({
-  imgList: [{
-    alt: "1",
-    imgUrl: "//upload.jianshu.io/collections/images/75/22.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64",
-    title: "历史"
-  }, {
-    alt: "2",
-    imgUrl: "//upload.jianshu.io/collections/images/283250/%E6%BC%AB%E7%94%BB%E4%B8%93%E9%A2%98.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64",
-    title: "手绘"
-  }],
+  imgList: [],
 
   artList: [{
     id: 1,
@@ -40,29 +33,14 @@ const defaultState = fromJS({
     imgUrl: "//cdn2.jianshu.io/assets/web/banner-s-3-7123fd94750759acf7eca05b871e9d17.png"
   }],
   
-  authorList: [{
-    id: 1,
-    name: "徐林Grace",
-    imgUrl: "//upload.jianshu.io/users/upload_avatars/5545154/1a3d5ed6-9ad1-44b3-9457-3e6a29dd1b71.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96",
-    intr: "写了433.9k字 · 4.1k喜欢"
-  }, {
-    id: 2,
-    name: "徐林Grace",
-    imgUrl: "//upload.jianshu.io/users/upload_avatars/5545154/1a3d5ed6-9ad1-44b3-9457-3e6a29dd1b71.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96",
-    intr: "写了433.9k字 · 4.1k喜欢"
-  }, {
-    id: 3,
-    name: "徐林Grace",
-    imgUrl: "//upload.jianshu.io/users/upload_avatars/5545154/1a3d5ed6-9ad1-44b3-9457-3e6a29dd1b71.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96",
-    intr: "写了433.9k字 · 4.1k喜欢"
-  }, {
-    id: 4,
-    name: "徐林Grace",
-    imgUrl: "//upload.jianshu.io/users/upload_avatars/5545154/1a3d5ed6-9ad1-44b3-9457-3e6a29dd1b71.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96",
-    intr: "写了433.9k字 · 4.1k喜欢"
-  }]
+  authorList: []
 })
 
 export default (prevState = defaultState, action) => {
-  return prevState
+  switch(action.type) {
+    case actionTypes.GET_INFO:
+      return action.data
+    default:
+      return prevState
+  }
 }

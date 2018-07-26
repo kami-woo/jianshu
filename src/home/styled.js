@@ -48,6 +48,7 @@ export const RecommendItem = styled.div`
 
   .re-title {
     margin: 0 11px;
+    font-size: 14px;
   }
 `
 
