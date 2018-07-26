@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 class recommend extends Component {
   render() {
     const { imgList } = this.props
-    console.log(imgList)
     return (
       <RecommendWrapper>
         { 

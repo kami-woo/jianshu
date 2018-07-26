@@ -8,6 +8,7 @@ export const HeaderWrapper = styled.div`
 	min-width: 700px;
 	border-bottom: 1px solid #e7e7e7;
 	background: #fff;
+	z-index: 1;
 `
 
 export const Logo = styled.a.attrs({ href: '/' })`
@@ -116,6 +117,7 @@ export const SearchHot = styled.div`
 	width: 220px;
 	padding: 20px;
 	box-shadow: 0 0 2px #999;
+	background: #fff;
 `
 
 export const SearchHotTitle = styled.div`
@@ -128,7 +130,7 @@ export const SearchHotToggle = styled.span`
 	display: block;
 	float: right;
 	cursor: pointer;
-	
+
 	.spin {
 		display: block;
 		margin-top: 2px;

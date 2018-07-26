@@ -15,7 +15,7 @@ import {
 	SearchHotToggle,
 	SearchHotItem,
 	Search
-} from './style.js'
+} from './styled.js'
 
 class header extends Component {
 	render() {
