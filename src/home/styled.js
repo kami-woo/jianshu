@@ -177,3 +177,35 @@ export const AuthorMsg = styled.div`
     margin-top: 10px;
   }
 `
+
+export const LoadMore = styled.div`
+  width: 30%;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 auto 20px auto;
+  color: #fff;
+  border-radius: 20px;
+  background: #969696;
+  text-align: center;
+  cursor: pointer;
+`
+
+export const BackTop = styled.div`
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 50px;
+  right: 50px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 50px;
+  border: 1px solid #dcdcdc;
+
+  &.hidden {
+    display: none
+  }
+
+  .iconfont {
+    font-size: 25px;
+  }
+`
