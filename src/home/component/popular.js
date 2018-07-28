@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { PopularWrapper, PopularItem, PopularTdc } from '../styled'
 
-class popular extends Component {
+class popular extends PureComponent {
   render() {
     const { popList } = this.props
     return (

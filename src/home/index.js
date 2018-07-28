@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { HomeWrapper, HomeLeft, HomeRight, BackTop } from './styled'
 import { actionCreators } from './store'
@@ -8,7 +8,7 @@ import Popular from './component/popular'
 import Author from './component/author'
 import Load from './component/load'
 
-class home extends Component {
+class home extends PureComponent {
 
   constructor(props) {
     super(props)

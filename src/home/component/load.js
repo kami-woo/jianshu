@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { LoadMore } from '../styled'
 import { actionCreators } from '../store'
 
-class load extends Component {
+class load extends PureComponent {
   render() {
     const { getMoreArticle } = this.props
     return(

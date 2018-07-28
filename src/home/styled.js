@@ -64,10 +64,12 @@ export const ArticleItem = styled.div`
   position: relative;
 
   .title {
+    text-decoration:none;
     display: block;
     font-size: 18px;
     font-weight: 700;
     line-height: 28px;
+    color: #333;
   }
 
   .art-img {

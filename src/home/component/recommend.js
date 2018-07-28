@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { RecommendWrapper, RecommendItem } from '../styled'
 import { connect } from 'react-redux'
 
-class recommend extends Component {
+class recommend extends PureComponent {
   render() {
     const { imgList } = this.props
     return (
@@ -11,7 +11,7 @@ class recommend extends Component {
           imgList.map((imgItem) => {
             imgItem = imgItem.toJS()
             return (
-              <RecommendItem key={imgItem.id}>
+              <RecommendItem key={ imgItem.id }>
                 <img alt="" className="re-img" src={ imgItem.imgUrl } />
                 <span className="re-title" >{ imgItem.title }</span>
               </RecommendItem>

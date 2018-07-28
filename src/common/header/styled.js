@@ -11,7 +11,7 @@ export const HeaderWrapper = styled.div`
 	z-index: 1;
 `
 
-export const Logo = styled.a.attrs({ href: '/' })`
+export const Logo = styled.div`
 	width: 100px;
 	height: 58px;
 	display: block;

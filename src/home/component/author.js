@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { AuthorWrapper, AuthorHeader, Authorex, AuthorItem, AuthorMsg } from '../styled'
 import { connect } from 'react-redux'
 
-class author extends Component {
+class author extends PureComponent {
   render() {
     const { authorList } = this.props
     return (

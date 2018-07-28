@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
+import { Link } from 'react-router-dom'
 import {
 	HeaderWrapper,
 	Logo,
@@ -17,12 +18,14 @@ import {
 	Search
 } from './styled.js'
 
-class header extends Component {
+class header extends PureComponent {
 	render() {
 		const { focused, list, handleFocusSearch, handleBlurSearch } = this.props
 		return (
 			<HeaderWrapper>
-				<Logo />
+				<Link to="/">
+					<Logo />
+				</Link>
 				<Menu>
 					<MenuItem className="left home"> 首页 </MenuItem>
 					<MenuItem className="left"> 下载APP </MenuItem>
