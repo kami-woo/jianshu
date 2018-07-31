@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { DetailWrapper, DetailTitle, DetailContent } from './styled'
 import { connect } from 'react-redux'
+import { actionCreators } from './store'
 
 class detail extends Component {
   render() {
@@ -14,6 +15,10 @@ class detail extends Component {
       </DetailWrapper>
     )
   }
+
+  componentDidMount() {
+    this.props.getData(this.props.match.params.id)
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -23,4 +28,12 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, null)(detail)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getData(id) {
+      dispatch(actionCreators.getDetailData(id))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(detail)

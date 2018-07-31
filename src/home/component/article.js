@@ -14,7 +14,7 @@ class article extends PureComponent {
           return (
             <ArticleItem key={ artItem.id }>
               <img className="art-img" alt="" src={ artItem.imgUrl } />
-              <Link className="title" to="/detail">{ artItem.title }</Link>
+              <Link className="title" to={ "/detail/" + artItem.id }>{ artItem.title }</Link>
               <span className="desc">{ artItem.desc }</span>
             </ArticleItem>
           )
