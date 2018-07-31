@@ -1,12 +1,26 @@
 import React, { Component } from 'react'
-import { DetailWrapper } from './styled'
+import { DetailWrapper, DetailTitle, DetailContent } from './styled'
+import { connect } from 'react-redux'
 
 class detail extends Component {
   render() {
+    const { title, content } = this.props
     return (
-      <DetailWrapper>detail</DetailWrapper>
+      <DetailWrapper>
+        <DetailTitle>
+          { title }
+        </DetailTitle>
+        <DetailContent dangerouslySetInnerHTML={{ __html: content }} />
+      </DetailWrapper>
     )
   }
 }
 
-export default detail
+const mapStateToProps = (state) => {
+  return {
+    title: state.getIn(['detailReducer', 'title']),
+    content: state.getIn(['detailReducer', 'content'])
+  }
+}
+
+export default connect(mapStateToProps, null)(detail)
