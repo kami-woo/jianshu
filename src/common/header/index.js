@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux'
 import { actionCreators } from './store'
+import { actionCreators as loginActionCreators } from '../../pages/login/store'
 import { Link } from 'react-router-dom'
 import {
 	HeaderWrapper,
@@ -19,17 +20,26 @@ import {
 } from './styled.js'
 
 class header extends PureComponent {
+
+
 	render() {
-		const { focused, list, handleFocusSearch, handleBlurSearch } = this.props
+		const { focused, list, handleFocusSearch, handleBlurSearch, loginState, handleLogout } = this.props
 		return (
 			<HeaderWrapper>
 				<Link to="/">
 					<Logo />
 				</Link>
 				<Menu>
-					<MenuItem className="left home"> 首页 </MenuItem>
-					<MenuItem className="left"> 下载APP </MenuItem>
-					<MenuItem className="right"> 登录 </MenuItem>
+					<MenuItem className="left home">首页</MenuItem>
+					<MenuItem className="left">下载APP</MenuItem>
+					{
+						loginState ?
+							<MenuItem className="right" onClick={ handleLogout }>退出</MenuItem>
+							: 
+							<Link to="/login">
+								<MenuItem className="right">登录</MenuItem>
+							</Link>
+					}
 					<MenuItem className="right">
 						<i className="iconfont">&#xe636;</i>
 					</MenuItem>
@@ -107,7 +117,8 @@ const mapStateToProps = (state) => ({
 	list: state.getIn(['headerReducer', 'list']),
 	mouseIn: state.getIn(['headerReducer', 'mouseIn']),
 	page: state.getIn(['headerReducer', 'page']),
-	totalPage: state.getIn(['headerReducer', 'totalPage'])
+	totalPage: state.getIn(['headerReducer', 'totalPage']),
+  loginState: state.getIn(['loginReducer', 'login'])
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -138,6 +149,10 @@ const mapDispatchToProps = (dispatch) => {
 			}
 			icon.style.transform = 'rotate(' + ( degInt+360 ) + 'deg)'
 			dispatch(actionCreators.searchToggle())
+		},
+
+		handleLogout() {
+			dispatch(loginActionCreators.changeLoginState())
 		}
 	}
 }

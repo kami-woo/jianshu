@@ -28,9 +28,15 @@ export const Menu = styled.div`
 	box-sizing: border-box;
 `
 
-export const MenuItem = styled.a`
+export const MenuItem = styled.div`
 	font-size: 17px;
 	line-height: 28px;
+	color: #333;
+	cursor: pointer;
+
+	&:hover {
+		color: #000;
+	}
 
 	&.left {
 		float: left;
